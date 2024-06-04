@@ -4,6 +4,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import { getAllStudents } from './services/contacts.js';
 import { getContactById } from './services/contacts.js';
+import mongoose from 'mongoose';
 
 dotenv.config();
 
@@ -50,7 +51,15 @@ export const startServer = () => {
     try {
       const { contactId } = req.params;
       const contactById = await getContactById(contactId);
+
       if (!contactById) {
+        return res.status(404).json({
+          status: 'error',
+          message: 'Not found',
+        });
+      }
+
+      if (!mongoose.Types.ObjectId.isValid(contactId)) {
         return res.status(404).json({
           status: 'error',
           message: 'Not found',
