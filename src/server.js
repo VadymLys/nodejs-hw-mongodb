@@ -8,7 +8,7 @@ import mongoose from 'mongoose';
 
 dotenv.config();
 
-const PORT = Number(process.env.PORT || 3000);
+const PORT = process.env.PORT || 3000;
 
 export const startServer = () => {
   const app = express();
