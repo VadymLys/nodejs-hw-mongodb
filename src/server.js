@@ -1,14 +1,12 @@
 import express from 'express';
 import pino from 'pino-http';
 import cors from 'cors';
-import dotenv from 'dotenv';
-import { getAllStudents } from './services/contacts.js';
+import { getAllContacts } from './services/contacts.js';
 import { getContactById } from './services/contacts.js';
 import mongoose from 'mongoose';
+import { env } from './utils/env.js';
 
-dotenv.config();
-
-const PORT = process.env.PORT || 3000;
+const PORT = Number(env(env.PORT, '3000'));
 
 export const startServer = () => {
   const app = express();
@@ -32,11 +30,11 @@ export const startServer = () => {
 
   app.get('/contacts', async (req, res) => {
     try {
-      const students = await getAllStudents();
+      const contacts = await getAllContacts();
       res.status(200).json({
         status: 'success',
         message: 'Successfully found contacts!',
-        data: students,
+        data: contacts,
       });
     } catch (err) {
       res.status(500).json({
@@ -50,6 +48,14 @@ export const startServer = () => {
   app.get('/contacts/:contactId', async (req, res) => {
     try {
       const { contactId } = req.params;
+
+      if (!mongoose.Types.ObjectId.isValid(contactId)) {
+        return res.status(404).json({
+          status: 'error',
+          message: 'Not found',
+        });
+      }
+
       const contactById = await getContactById(contactId);
 
       if (!contactById) {
@@ -59,16 +65,9 @@ export const startServer = () => {
         });
       }
 
-      if (!mongoose.Types.ObjectId.isValid(contactId)) {
-        return res.status(404).json({
-          status: 'error',
-          message: 'Not found',
-        });
-      }
-
       res.status(200).json({
-        status: 'success',
-        message: `Successfully found contact with id! ${contactById}`,
+        status: '200',
+        message: `Successfully found contact`,
         data: contactById,
       });
     } catch (err) {
