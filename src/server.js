@@ -38,7 +38,7 @@ export const startServer = () => {
       });
     } catch (err) {
       res.status(500).json({
-        status: 'error',
+        status: 500,
         message: 'Failed to retrieve contacts',
         err: err.message,
       });
@@ -51,7 +51,7 @@ export const startServer = () => {
 
       if (!mongoose.Types.ObjectId.isValid(contactId)) {
         return res.status(404).json({
-          status: 'error',
+          status: 404,
           message: 'Not found',
         });
       }
@@ -60,7 +60,7 @@ export const startServer = () => {
 
       if (!contactById) {
         return res.status(404).json({
-          status: 'error',
+          status: 404,
           message: 'Not found',
         });
       }
@@ -72,7 +72,7 @@ export const startServer = () => {
       });
     } catch (err) {
       res.status(404).json({
-        status: 'error',
+        status: 404,
         message: 'Failed to retrieve contact',
         err: err.message,
       });
