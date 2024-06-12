@@ -2,18 +2,18 @@ export const parseContactType = (contactType) => {
   const contact = typeof contactType === 'string';
   if (!contact) return;
 
-  const isContactType = (contactType) => {
+  const isContactType = (contactType) =>
     ['work', 'home', 'personal'].includes(contactType);
-  };
 
   if (isContactType(contactType)) return contactType;
 };
 
 export const parseIsFavourite = (isFavourite) => {
-  const isBoolean = typeof isFavourite === 'boolean';
+  const isBoolean = isFavourite === 'true' || isFavourite === 'false';
+
   if (!isBoolean) return;
 
-  return isFavourite;
+  return isFavourite === 'true' ? true : false;
 };
 
 export const parseFilterParams = (query) => {
