@@ -2,9 +2,10 @@ import express from 'express';
 import pino from 'pino-http';
 import cors from 'cors';
 import { env } from './utils/env.js';
-import contactRouter from './routers/contacts.js';
+import router from './routers/index.js';
 import { notFoundHandler } from './middlewares/notFoundHandler.js';
 import { errorHandler } from './middlewares/errorHandler.js';
+import cookieParser from 'cookie-parser';
 
 const PORT = Number(env(env.PORT, '3000'));
 
@@ -28,11 +29,13 @@ export const startServer = () => {
     });
   });
 
-  app.use(contactRouter);
+  app.use(router);
 
   app.use('*', notFoundHandler);
 
   app.use(errorHandler);
+
+  app.use(cookieParser());
 
   app.listen(PORT, () => {
     console.log(`Server is running on ${PORT}`);

@@ -1,6 +1,6 @@
 import Joi from 'joi';
 
-export const createStudentSchema = Joi.object({
+export const createContactSchema = Joi.object({
   name: Joi.string()
     .min(3)
     .max(20)
@@ -17,7 +17,7 @@ export const createStudentSchema = Joi.object({
   contactType: Joi.string().min(3).max(20).valid('work', 'home', 'personal'),
 });
 
-export const updateStudentSchema = Joi.object({
+export const updateContactSchema = Joi.object({
   name: Joi.string().min(3).max(20).required(),
   phoneNumber: Joi.string().min(3).max(20).required(),
   email: Joi.string().min(3).max(20).required(),
