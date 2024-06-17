@@ -14,12 +14,8 @@ export const getAllContacts = async ({
 
   const contactsQuery = ContactsCollection.find();
 
-  if (filter.isFavourite !== true) {
+  if (typeof filter.isFavourite === 'boolean') {
     contactsQuery.where('isFavourite').equals(filter.isFavourite);
-  } else if (filter.isFavourite !== false) {
-    contactsQuery.where('isFavourite').equals(filter.isFavourite);
-  } else {
-    return null;
   }
 
   if (filter.contactType) {
