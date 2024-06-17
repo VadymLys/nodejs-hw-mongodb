@@ -13,6 +13,7 @@ export const parseIsFavourite = (isFavourite) => {
 
   if (typeof isFavourite === 'boolean') return isFavourite;
 
+
   if (!isBoolean) return;
 
   return isFavourite === 'true' ? true : false;
