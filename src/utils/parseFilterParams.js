@@ -11,7 +11,9 @@ export const parseContactType = (contactType) => {
 export const parseIsFavourite = (isFavourite) => {
   const isBoolean = isFavourite === 'true' || isFavourite === 'false';
 
-  if (typeof isFavourite === 'boolean') return;
+  if (typeof isFavourite === 'boolean') return isFavourite;
+
+  console.log('Parsefilters Params:', isBoolean);
 
   if (!isBoolean) return;
 
