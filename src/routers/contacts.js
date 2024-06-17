@@ -10,8 +10,8 @@ import {
 import { ctrlWrapper } from '../utils/ctrlWrapper.js';
 import { validateBody } from '../middlewares/validateBody.js';
 import {
-  createStudentSchema,
-  updateStudentSchema,
+  createContactSchema,
+  updateContactSchema,
 } from '../validation/contacts.js';
 
 const router = Router();
@@ -22,7 +22,7 @@ router.get('/contacts/:contactId', ctrlWrapper(getContactByIdController));
 
 router.post(
   '/contacts',
-  validateBody(createStudentSchema),
+  validateBody(createContactSchema),
   ctrlWrapper(createContactController),
 );
 
@@ -32,7 +32,7 @@ router.put('/contacts/:contactId', ctrlWrapper(upsertContactController));
 
 router.patch(
   '/contacts/:contactId',
-  validateBody(updateStudentSchema),
+  validateBody(updateContactSchema),
   ctrlWrapper(patchContactController),
 );
 
