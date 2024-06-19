@@ -76,5 +76,4 @@ export const refreshUserSessionController = async (req, res) => {
       accessToken: session.accessToken,
     },
   });
-  console.log('🚀 ~ refreshUserSessionController ~ session:', session);
 };
