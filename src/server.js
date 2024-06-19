@@ -23,6 +23,8 @@ export const startServer = () => {
     }),
   );
 
+  app.use(cookieParser());
+
   app.get('/', (req, res) => {
     res.json({
       message: 'Hello World',
@@ -34,8 +36,6 @@ export const startServer = () => {
   app.use('*', notFoundHandler);
 
   app.use(errorHandler);
-
-  app.use(cookieParser());
 
   app.listen(PORT, () => {
     console.log(`Server is running on ${PORT}`);
