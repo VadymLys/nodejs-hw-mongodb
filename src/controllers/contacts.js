@@ -143,14 +143,12 @@ export const patchContactController = async (req, res, next) => {
     photoUrl = await saveFileToUploadDir(photo);
   }
 
-  const result = await updateContact(
-    contactId,
-    {
-      ...req.body,
-      photo: photoUrl,
-    },
-    userId,
-  );
+  const result = await updateContact(contactId, userId, {
+    ...req.body,
+    photo: photoUrl,
+  });
+
+  console.log('🚀 ~ patchContactController ~ result:', result.contact);
 
   if (!mongoose.Types.ObjectId.isValid(contactId)) {
     return res.status(404).json({

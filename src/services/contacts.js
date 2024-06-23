@@ -69,7 +69,6 @@ export const updateContact = async (
   console.log('🚀 ~  userId,:', userId);
   const rawResult = await ContactsCollection.findOneAndUpdate(
     { _id: contactId, userId },
-
     payload,
     {
       new: true,
@@ -77,11 +76,12 @@ export const updateContact = async (
       ...options,
     },
   );
+  console.log('🚀 ~ rawResult:', rawResult);
 
   if (!rawResult || !rawResult.value) return null;
 
   return {
-    student: rawResult.value,
+    contact: rawResult.value,
     isNew: Boolean(rawResult?.lastErrorObject?.upserted),
   };
 };
