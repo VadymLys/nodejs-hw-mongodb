@@ -147,8 +147,10 @@ export const patchContactController = async (req, res, next) => {
   let photoUrl;
 
   if (photo) {
+    console.log('🚀 ~ patchContactController ~ photo:', photo);
     if (env('ENABLE_CLOUDINARY') === 'true') {
-      photoUrl = await saveFileToCloudinary;
+      photoUrl = await saveFileToCloudinary(photo);
+      console.log('🚀 ~ patchContactController ~ photoUrl :', photoUrl);
     } else {
       photoUrl = await saveFileToUploadDir(photo);
     }
