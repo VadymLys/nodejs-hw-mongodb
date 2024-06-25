@@ -65,8 +65,6 @@ export const updateContact = async (
   payload,
   options = {},
 ) => {
-  console.log('🚀 ~ contactId,:', contactId);
-  console.log('🚀 ~  userId,:', userId);
   const rawResult = await ContactsCollection.findOneAndUpdate(
     { _id: contactId, userId },
     payload,

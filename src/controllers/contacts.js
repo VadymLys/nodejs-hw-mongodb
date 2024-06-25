@@ -90,7 +90,7 @@ export const createContactController = async (req, res) => {
     }
   }
 
-  const contact = await createContact({ ...req.body, userId, photo: photoUrl });
+  const contact = await createContact({ userId, photo: photoUrl, ...req.body });
 
   res.status(201).json({
     status: 201,
@@ -147,10 +147,8 @@ export const patchContactController = async (req, res, next) => {
   let photoUrl;
 
   if (photo) {
-    console.log('🚀 ~ patchContactController ~ photo:', photo);
     if (env('ENABLE_CLOUDINARY') === 'true') {
       photoUrl = await saveFileToCloudinary(photo);
-      console.log('🚀 ~ patchContactController ~ photoUrl :', photoUrl);
     } else {
       photoUrl = await saveFileToUploadDir(photo);
     }
@@ -160,8 +158,6 @@ export const patchContactController = async (req, res, next) => {
     ...req.body,
     photo: photoUrl,
   });
-
-  console.log('🚀 ~ patchContactController ~ result:', result.contact);
 
   if (!mongoose.Types.ObjectId.isValid(contactId)) {
     return res.status(404).json({
