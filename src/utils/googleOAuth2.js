@@ -20,11 +20,10 @@ console.log('🚀 ~ googleOAuthClient:', googleOAuthClient);
 export const generateAuthUrl = () => {
   const authUrl = googleOAuthClient.generateAuthUrl({
     scope: [
-      '<https://www.googleapis.com/auth/userinfo.email>',
-      '<https://www.googleapis.com/auth/userinfo.profile>',
+      'https://www.googleapis.com/auth/userinfo.email',
+      'https://www.googleapis.com/auth/userinfo.profile',
     ],
   });
-  console.log('🚀 ~ generateAuthUrl ~ authUrl:', authUrl);
   return authUrl;
 };
 
