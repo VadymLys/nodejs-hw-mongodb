@@ -74,7 +74,6 @@ export const updateContact = async (
       ...options,
     },
   );
-  console.log('🚀 ~ rawResult:', rawResult);
 
   if (!rawResult || !rawResult.value) return null;
 
