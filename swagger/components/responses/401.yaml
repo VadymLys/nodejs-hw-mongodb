@@ -11,7 +11,9 @@ content:
         status:
           type: integer
           example: 401
-          message: UnauthorizedError
+        message:
+          type: string
+          example: UnauthorizedError
         data:
           type: object
           required:

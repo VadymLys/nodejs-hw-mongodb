@@ -9,33 +9,33 @@ required:
   - userId
 
 properties:
-name:
-  description: "Contact's name"
-  type: string
-  example: 'John doe'
+  name:
+    description: "Contact's name"
+    type: string
+    example: 'John doe'
 
-phoneNumber:
-  description: "Contact's phone number"
-  type: string
-  example: '+7509348552'
+  phoneNumber:
+    description: 'Contact`s phone number'
+    type: string
+    example: '+7509348552'
 
-email:
-  description: 'Contact's email address'
-  type: string
-  example: "john.doe@example.com"
+  email:
+    description: 'Contact`s email address'
+    type: string
+    example: 'john.doe@example.com'
 
-isFavourite:
-  description: "Contact favourite"
-  type: boolean
-  example: true
+  isFavourite:
+    description: 'Contact favourite'
+    type: boolean
+    example: true
 
-contactType: 
-  description: "Contact type"
-  type: string
-  enum:
-    - work
-    - home
-    - personal
+  contactType:
+    description: 'Contact type'
+    type: string
+    enum:
+      - work
+      - home
+      - personal
 
   userId:
     type: string
@@ -46,4 +46,3 @@ contactType:
     type: string
     description: "Link to contact's photo"
     example: https://res.cloudinary.com/uqwgdu/image/upload/image.png
-
