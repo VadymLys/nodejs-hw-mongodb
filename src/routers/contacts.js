@@ -15,10 +15,13 @@ import {
 } from '../validation/contacts.js';
 import { authenticate } from '../middlewares/authenticate.js';
 import { upload } from '../middlewares/multer.js';
+import isValidId from '../middlewares/mongoValidationId.js';
 
 const router = Router();
 
 router.use(authenticate);
+
+router.use('/:contactId', isValidId('contactId'));
 
 router.get('/', ctrlWrapper(getAllContactsController));
 
